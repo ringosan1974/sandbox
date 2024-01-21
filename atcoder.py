@@ -1,19 +1,22 @@
-n = int(input())
-h = [int(x) for x in input().split()]
-c = 0
+nq = [int(i) for i in input().split()]
+n = nq[0]
+q = nq[1]
 
-while max(h) != 0:
-    print(f"{h} {c}")
-    flag = False
-    for i in range(len(h)):
-        if h[i] <= 1:
-            if flag:
-                c += 1
-                break
-        else:
-            #水やり操作
-            h[i] -= 1
-            flag = True
-            if i == len(h)-1:
-                c += 1
-print(c)
+s = input()
+
+li = [0] * q
+ri = [0] * q
+for i in range(q):
+    lr = [int(x) for x in input().split()]
+    li[i] = lr[0]
+    ri[i] = lr[1]
+
+p = [0] * q
+
+for i in range(q):
+    for j in range(li[i]-1, ri[i]-1):
+        if s[j] == s[j+1]:
+            p[i] += 1
+
+ans = " ".join([str(i) for i in p])
+print(ans)
